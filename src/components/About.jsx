@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 export default function About() {
   const [mode, setMode] = useState({
-    backgroundColor: "black",
-    color: "white",
+    backgroundColor: "white",
+    color: "black",
   });
   const [modeButtonText, setModeButtonText] = useState("Enable Dark Mode");
   const handleToggleMode = () => {

@@ -12,9 +12,16 @@ export default function TextForm(props) {
     setText(text.toLowerCase());
   };
   const handleClearClick = () => {
-    setText("")
-    textBoxRef.current.focus()
-  }
+    setText("");
+    textBoxRef.current.focus();
+  };
+  const handleCopyClick = () => {
+    textBoxRef.current.select();
+    navigator.clipboard.writeText(textBoxRef.current.value);
+  };
+  const handleRemoveExtraSpacesClick = () => {
+    setText((text.split(/[ ]+/)).join(" "));
+  };
   return (
     <>
       <div className="container">
@@ -31,26 +38,36 @@ export default function TextForm(props) {
             placeholder="Enter Text Here..."
           ></textarea>
         </div>
-        <button className="btn btn-primary" onClick={handleUpClick}>
+        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-3" onClick={handleLoClick}>
+        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary" onClick={handleClearClick}>
+        <button className="btn btn-primary mx-2" onClick={handleClearClick}>
           Clear Text
+        </button>
+        <button className="btn btn-primary mx-2" onClick={handleCopyClick}>
+          Copy Text
+        </button>
+        <button className="btn btn-primary mx-2" onClick={handleRemoveExtraSpacesClick}>
+          Remove Extra Spaces
         </button>
       </div>
       <div className="container my-3">
         <h1>Text Summary: </h1>
-        <p>{text.length === 0 ? 0 : text.trim().split(" ").length} Words And {text.length} Characters</p>
-        <p>Requires {(0.006*text.split(" ").length).toFixed(2)} mins read time.</p>
+        <p>
+          {text.length === 0 ? 0 : text.trim().split(" ").length} Words And{" "}
+          {text.length} Characters
+        </p>
+        <p>
+          Requires {(0.006 * text.split(" ").length).toFixed(2)} mins read time.
+        </p>
       </div>
       <div className="container my-3">
         <h1>Read View: </h1>
         <p>{text}</p>
       </div>
-      
     </>
   );
 }
