@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter Text Here...");
+  const [text, setText] = useState("");
+  const textBoxRef = useRef(null);
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
@@ -10,6 +11,10 @@ export default function TextForm(props) {
   const handleLoClick = () => {
     setText(text.toLowerCase());
   };
+  const handleClearClick = () => {
+    setText("")
+    textBoxRef.current.focus()
+  }
   return (
     <>
       <div className="container">
@@ -18,10 +23,12 @@ export default function TextForm(props) {
           <label htmlFor="myBox" className="form-label"></label>
           <textarea
             className="form-control"
+            ref={textBoxRef}
             value={text}
             id="myBox"
             rows="8"
             onChange={handleOnChange}
+            placeholder="Enter Text Here..."
           ></textarea>
         </div>
         <button className="btn btn-primary" onClick={handleUpClick}>
@@ -30,10 +37,13 @@ export default function TextForm(props) {
         <button className="btn btn-primary mx-3" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
+        <button className="btn btn-primary" onClick={handleClearClick}>
+          Clear Text
+        </button>
       </div>
       <div className="container my-3">
         <h1>Text Summary: </h1>
-        <p>{text.split(" ").length} Words And {text.length} Characters</p>
+        <p>{text.length === 0 ? 0 : text.trim().split(" ").length} Words And {text.length} Characters</p>
         <p>Requires {(0.006*text.split(" ").length).toFixed(2)} mins read time.</p>
       </div>
       <div className="container my-3">
