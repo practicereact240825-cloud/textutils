@@ -1,23 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function About() {
-  const [mode, setMode] = useState({
-    backgroundColor: "white",
-    color: "black",
-  });
-  const [modeButtonText, setModeButtonText] = useState("Enable Dark Mode");
-  const handleToggleMode = () => {
-    if (mode.backgroundColor === "black") {
-      setMode({ backgroundColor: "white", color: "black" });
-      setModeButtonText("Enable Dark Mode");
-    }
-    if (mode.backgroundColor === "white") {
-      setMode({ backgroundColor: "black", color: "white" });
-      setModeButtonText("Enable Light Mode");
-    }
+export default function About(props) {
+  // Derive styles from props directly
+  const mode = {
+    backgroundColor: props.isDarkMode ? "rgb(33,37,41)" : "white",
+    color: props.isDarkMode ? "white" : "rgb(33,37,41)",
   };
+
+  
+
   return (
-    <div className="container py-1" style={mode}>
+    <>
+    <div className="container py-1 " style={mode}>
       <h1 className="my-3">About Us...</h1>
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
@@ -40,17 +34,12 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style={mode}>
-              <strong>This is the first item’s accordion body.</strong> It is
-              shown by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It’s also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              <strong>This is the first item’s accordion body.</strong>
+              You can put any HTML here.
             </div>
           </div>
         </div>
+        {/* Accordion Item #2 */}
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
@@ -71,17 +60,11 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style={mode}>
-              <strong>This is the second item’s accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It’s also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              <strong>This is the second item’s accordion body.</strong>
             </div>
           </div>
         </div>
+        {/* Accordion Item #3 */}
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
@@ -102,27 +85,12 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style={mode}>
-              <strong>This is the third item’s accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It’s also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              <strong>This is the third item’s accordion body.</strong>
             </div>
           </div>
         </div>
       </div>
-      <div className="container my-3">
-        <button
-          type="button"
-          className={`btn btn-${modeButtonText === "Enable Light Mode" ? "light" : "dark"}`}
-          onClick={handleToggleMode}
-        >
-          {modeButtonText}
-        </button>
-      </div>
     </div>
+    </>
   );
 }

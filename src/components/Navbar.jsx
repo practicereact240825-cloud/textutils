@@ -1,12 +1,15 @@
-
 import PropTypes from "prop-types";
 
 export default function Navbar(props) {
+  const mode = {
+    backgroundColor: props.isDarkMode ? "rgba(0, 82, 164, 1)" : "rgba(33, 144, 255, 1)",
+    color: props.isDarkMode ? "white" : "rgba(235, 243, 250, 1)",
+  };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg " style={{backgroundColor: mode.backgroundColor}}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand" href="/" style={{color: mode.color}}>
             {props.title}
           </a>
           <button
@@ -23,36 +26,40 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <a className="nav-link active" aria-current="page" href="/" style={{color: mode.color}}>
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/" style={{color: mode.color}}>
                   About
                 </a>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
+            <form className="d-flex" role="search" onClick={props.toggleDarkMode}>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="switchCheckChecked"
+                  checked = {props.isDarkMode}
+                  readOnly
+                />
+                <label className="form-check-label" htmlFor="switchCheckChecked" style={{color: mode.color}}>
+                  Dark Mode
+                </label>
+              </div>
             </form>
           </div>
         </div>
       </nav>
     </>
-  ); 
+  );
 }
 Navbar.propTypes = {
-    title: PropTypes.string.isRequired,
-}
+  title: PropTypes.string.isRequired,
+};
 Navbar.defaultProps = {
-    title: "Set title here"
-}
+  title: "Set title here",
+};
