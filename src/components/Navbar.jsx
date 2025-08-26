@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function Navbar(props) {
   const mode = {
-    backgroundColor: props.isDarkMode ? "rgba(0, 82, 164, 1)" : "rgba(33, 144, 255, 1)",
+    backgroundColor: props.modeColor,
     color: props.isDarkMode ? "white" : "rgba(235, 243, 250, 1)",
   };
   return (
@@ -36,6 +36,19 @@ export default function Navbar(props) {
                 </a>
               </li>
             </ul>
+            {/* Color Picker */}
+              
+              <input
+                type="color"
+                className="form-control form-control-color "
+                 style={{backgroundColor: 'rgba(255,255,255,0)', borderColor : mode.color, borderWidth : "3px", padding: "2px" , height: "30px",width: "30px"}}
+                title="Choose your color"
+                value={props.modeColor}
+                onChange={(e) => props.setModeColor(e.target.value)}
+              />
+              <label className="form-check-label mx-2" htmlFor="switchCheckChecked" style={{color: mode.color}}>
+                  Choose Color 
+                </label>
             <form className="d-flex" role="search" onClick={props.toggleDarkMode}>
               <div className="form-check form-switch">
                 <input

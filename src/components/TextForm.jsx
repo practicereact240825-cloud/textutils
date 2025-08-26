@@ -27,10 +27,10 @@ export default function TextForm(props) {
     setText((text.split(/[ ]+/)).join(" "));
     props.showAlert("Extra Spaces Removed!");
   };
-  const mode = {
-      backgroundColor: props.isDarkMode ? "rgb(33,37,41)" : "white",
-      color: props.isDarkMode ? "white" : "rgb(33,37,41)" 
-    }
+    const mode = {
+        backgroundColor: props.isDarkMode ? "rgb(33,37,41)" : "white",
+        color: props.isDarkMode ? "white" : "rgb(33,37,41)" 
+      }
   return (
     <>
     
@@ -52,19 +52,19 @@ export default function TextForm(props) {
     }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button className="btn btn-primary mx-2" style={{backgroundColor: `${props.modeColor}`, borderWidth: "0px"}} onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button className="btn btn-primary mx-2"  style={{backgroundColor: `${props.modeColor}`, borderWidth: "0px"}}onClick={handleLoClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleClearClick}>
+        <button className="btn btn-primary mx-2"  style={{backgroundColor: `${props.modeColor}`, borderWidth: "0px"}} onClick={handleClearClick}>
           Clear Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleCopyClick}>
+        <button className="btn btn-primary mx-2" style={{backgroundColor: `${props.modeColor}`, borderWidth: "0px"}} onClick={handleCopyClick}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleRemoveExtraSpacesClick}>
+        <button className="btn btn-primary mx-2"  style={{backgroundColor: `${props.modeColor}`, borderWidth: "0px"}} onClick={handleRemoveExtraSpacesClick}>
           Remove Extra Spaces
         </button>
       </div>
