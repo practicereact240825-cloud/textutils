@@ -7,20 +7,25 @@ export default function TextForm(props) {
   };
   const handleUpClick = () => {
     setText(text.toUpperCase());
+    props.showAlert("Text Changed to Uppercase!");
   };
   const handleLoClick = () => {
     setText(text.toLowerCase());
+    props.showAlert("Text Changed to Lowercase!");
   };
   const handleClearClick = () => {
     setText("");
     textBoxRef.current.focus();
+    props.showAlert("Text Cleared!");
   };
   const handleCopyClick = () => {
     textBoxRef.current.select();
     navigator.clipboard.writeText(textBoxRef.current.value);
+    props.showAlert("Text Copied to Clipboard!");
   };
   const handleRemoveExtraSpacesClick = () => {
     setText((text.split(/[ ]+/)).join(" "));
+    props.showAlert("Extra Spaces Removed!");
   };
   const mode = {
       backgroundColor: props.isDarkMode ? "rgb(33,37,41)" : "white",
@@ -34,7 +39,7 @@ export default function TextForm(props) {
         <div className="mb-3">
           <label htmlFor="myBox" className="form-label"></label>
           <textarea
-            className="form-control"
+            className={`form-control ${props.isDarkMode? "dark-placeholder" : "light-placeholder"}`}
             ref={textBoxRef}
             value={text}
             id="myBox"
