@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import {Link} from "react-router"
 
 export default function Navbar(props) {
   const mode = {
@@ -26,18 +27,17 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/" style={{color: mode.color}}>
+                <Link className="nav-link active" aria-current="page" to="/" style={{color: mode.color}}>
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/" style={{color: mode.color}}>
+                <Link className="nav-link" to="/about" style={{color: mode.color}}>
                   About
-                </a>
+                </Link>
               </li>
             </ul>
             {/* Color Picker */}
-              
               <input
                 type="color"
                 className="form-control form-control-color "

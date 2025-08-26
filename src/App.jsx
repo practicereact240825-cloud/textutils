@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
 
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
 function App() {
   const [isDarkMode, setDarkMode] = useState(true);
   const [alert, setAlert] = useState({ message: "", type: "" });
@@ -34,24 +36,56 @@ function App() {
       ? "rgb(33,37,41)"
       : "white";
   }, [isDarkMode]);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <>
+          <Navbar
+            title="Textutils"
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
+            setModeColor={setModeColor}
+            modeColor={modeColor}
+          />
 
+          <Alert message={alert.message} type={alert.type} />
+          <TextForm
+            heading="Enter Your Text Here:"
+            isDarkMode={isDarkMode}
+            showAlert={showAlert}
+            modeColor={modeColor}
+          />
+        </>
+      ),
+    },
+    {
+      path: "/about",
+      element: (
+        <>
+          <Navbar
+            title="Textutils"
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
+            setModeColor={setModeColor}
+            modeColor={modeColor}
+          />
+          <Alert message={alert.message} type={alert.type} />
+          <About isDarkMode={isDarkMode} modeColor={modeColor} />
+        </>
+      ),
+    },
+  ]);
   return (
     <>
       <div className={isDarkMode ? "bg-dark" : ""}>
-        <Navbar
-          title="Textutils"
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-          setModeColor={setModeColor}
-          modeColor={modeColor}
-        />
-        <Alert message={alert.message} type={alert.type} />
-        <TextForm
+        <RouterProvider router={router} />
+        {/* <TextForm
           heading="Enter Your Text Here:"
           isDarkMode={isDarkMode}
           showAlert={showAlert}
           modeColor={modeColor}
-        />
+        /> */}
         {/* <About isDarkMode={isDarkMode} modeColor={modeColor} /> */}
       </div>
     </>
